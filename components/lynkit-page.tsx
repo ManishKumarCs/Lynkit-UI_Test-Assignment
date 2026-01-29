@@ -9,15 +9,125 @@ export default function LynkitPage() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [newsCarouselIndex, setNewsCarouselIndex] = useState(0)
   const [currentPage, setCurrentPage] = useState<'home' | 'analytics'>('home')
+  
 
   const products = [
-    { id: 1, name: 'Lynktrac', icon: '📦' },
-    { id: 2, name: 'LynkFlow', icon: '🔄' },
-    { id: 3, name: 'LynkHub', icon: '🌐' },
-    { id: 4, name: 'LynkShield', icon: '🛡️' },
-    { id: 5, name: 'LynkAnalytics', icon: '📊' },
-    { id: 6, name: 'LynkAI', icon: '🤖' },
-  ]
+  {
+    id: 1,
+    name: "Lynktrac",
+    icon: "📦",
+    title: "Cargo Tracking and Security",
+    description: `
+Lynkit's product Lynktrac® is an asset tracking and security solution for cargo trucks, oil tankers, cargo trains and containers or other moveable assets. 
+
+By combining GPS devices with various vision and sensor based IoT devices on a single consolidated platform, we have created the ultimate tool for visibility, route optimization and analytics to improve supply chain security and efficiency.
+
+This solution offers a full suite of GPS locks and GPS trackers (fixed and portable), driver dashboard cameras and a range of sensors (including fuel, light, proximity and temperature) manufactured to suit every use case.
+
+Lynktrac® fully integrates with our electronic consignment note and proof of delivery platform Lynkit.io allowing for end to end automation and linkages in the supply chain.
+    `,
+    button: "Explore Lynktrac",
+    imageIcon: "📦",
+  },
+
+  {
+    id: 2,
+    name: "Lynkit.io",
+    icon: "🌐",
+    title: "Blockchain based Transport Management System",
+    description: `
+Lynkit.io™ is India’s first blockchain based platform for transport and supply chain management.
+
+This product has been showcased by the Linux Foundation as a business-ready application on their global blockchain showcase.
+
+Lynkit.io™ is built on Distributed Ledger Technology that enables businesses, transporters, agents and freight forwarders to issue and exchange e-consignment notes & proof of delivery (POD) receipts with complete visibility, data security, privacy control, all in real-time.
+
+The application is designed keeping in mind the principles of business collaboration, scalability and digital transformation along with various industry use cases that can be leveraged using this technology such as IoT integration for data validations, eKYC, vendor management and origin tracking.
+    `,
+    button: "Explore Lynkit.io",
+    imageIcon: "🌐",
+  },
+
+  {
+    id: 3,
+    name: "Lynkgrid",
+    icon: "🏗️",
+    title: "Yard and Parking Management System",
+    description: `
+Lynkit’s product Lynkgrid® is a terminal automation platform that provides a fully automated GPS-RFID based solution to locate, stack and retrieve containers in any port, terminal or yard.
+
+Lynkgrid® renders a 3-axis augmented reality interface for the detection and movement analysis of every container using Real Time Kinematics (RTK), providing an unprecedented centimeter level of accuracy.
+
+The solution brings all operational units, including crane, yard and terminal operators, gate and parking operations, shipping lines and goods owners all under one application.
+
+Through real-time analytics and in-built task management systems, the solution substantially reduces trailer congestion, container dwell times and optimizes moves per container.
+
+It provides an unprecedented level of productivity data and visibility of on-site operations to the user.
+
+Lynkgrid® leverages smart technology to retrofit existing terminal infrastructure to experience the same benefits of automation at a fraction of the cost.
+    `,
+    button: "Explore Lynkgrid",
+    imageIcon: "🏗️",
+  },
+
+  {
+    id: 4,
+    name: "Lynkgrid Warehouse",
+    icon: "🏢",
+    title: "Warehouse Automation System",
+    description: `
+Lynkgrid® - 2D for Warehouse is specifically designed to manage the needs of warehouses or any covered storage and distribution centers.
+
+It renders the location of goods on a 2-D augmented reality interface of the warehouse.
+
+All moves in, out and within the warehouse are recorded to allow for easy location and retrieval of goods.
+
+This can be further augmented with RFID technology to automate inventory management and record-keeping.
+
+In addition to the location system, Lynkgrid® - Warehouse also provides an option to manage the goods register, fully compliant with the requirements for bonded warehouses.
+
+Other features include shipment label generation, which can also be integrated with barcode printers and scanners, analytics and MIS report generation, and a configurable system of alerts and notifications to internal teams as well as customers.
+    `,
+    button: "Explore Warehouse System",
+    imageIcon: "🏢",
+  },
+
+  {
+    id: 5,
+    name: "LynkID",
+    icon: "🆔",
+    title: "RFID, OCR and BLE Identification",
+    description: `
+Lynkit’s RFID and Bluetooth sensors offer a wide variety of solutions for tracking and identification.
+
+LynkID© offers RFID based gate automation systems coupled with loading bay optimisation for manufacturers and large corporates which can be coupled with our boom barriers and LED lighting solutions.
+
+We also offer RFID based asset identification and management systems which can be combined with our fingerprint biometric solution for a tamper proof record keeping of asset access and ownership.
+
+Our Bluetooth and RFID solutions also provide for location tracking indoors of both personnel and moving machinery, tools or other inventory.
+    `,
+    button: "Explore LynkID",
+    imageIcon: "🆔",
+  },
+
+  {
+    id: 6,
+    name: "PikMyBox",
+    icon: "🚚",
+    title: "Order Fulfillment System",
+    description: `
+Our order fulfilment tool catering to the needs of D2C sellers shipping to overseas and domestic destinations.
+
+We simplify fulfilment by automating compliance, documentation, inventory, aggregating different shipping partners, courier companies, and providing route optimisation and load management for your own fleets and riders.
+
+This means you can compare rates and TATs across various modes of transit, service providers with your own contracts and 3PLs to make the best decision.
+    `,
+    button: "Explore PikMyBox",
+    imageIcon: "🚚",
+  },
+]
+
+  const [activeProduct, setActiveProduct] = useState(products[0]);
 
   const newsItems = [
     {
@@ -164,45 +274,63 @@ export default function LynkitPage() {
 
           {/* Products Section */}
           <section className="py-20 px-4 bg-black">
-            <div className="max-w-6xl mx-auto">
-              <h2 className="text-4xl font-bold mb-12 text-center">Our Products</h2>
-              
-              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 mb-12">
-                {products.map((product, idx) => (
-                  <button
-                    key={product.id}
-                    className={`p-4 rounded-lg border transition ${
-                      idx === 0
-                        ? 'bg-orange-500/20 border-orange-500 text-orange-400'
-                        : 'bg-gray-900/50 border-gray-700 text-gray-300 hover:border-gray-600'
-                    }`}
-                  >
-                    <div className="text-2xl mb-2">{product.icon}</div>
-                    <p className="text-sm font-medium">{product.name}</p>
-                  </button>
-                ))}
-              </div>
+  <div className="max-w-6xl mx-auto">
+    <h2 className="text-4xl font-bold mb-12 text-center">
+      Our Products
+    </h2>
 
-              {/* Product Detail */}
-              <div className="grid md:grid-cols-2 gap-12 items-center bg-gray-900/30 p-8 rounded-lg border border-gray-800">
-                <div>
-                  <h3 className="text-3xl font-bold mb-6">Cargo Tracking and Security</h3>
-                  <p className="text-gray-400 mb-6 leading-relaxed">
-                    Real-time tracking of your entire cargo operations with advanced security protocols. Monitor shipments across every stage, from warehouse to final delivery. Our intelligent system provides complete visibility, predictive alerts, and automated compliance reporting to ensure your goods arrive safely and on time.
-                  </p>
-                  <button className="bg-orange-500 hover:bg-orange-600 text-black font-semibold px-6 py-2 rounded transition">
-                    Explore Lynktrac
-                  </button>
-                </div>
-                <div className="bg-gradient-to-br from-orange-500/10 to-orange-600/5 border border-orange-500/20 rounded-lg h-80 flex items-center justify-center">
-                  <div className="text-center">
-                    <div className="text-6xl mb-4">📦</div>
-                    <p className="text-gray-400">Cargo Tracking Interface</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
+    {/* Tabs */}
+    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 mb-12">
+      {products.map((product) => (
+        <button
+          key={product.id}
+          onClick={() => setActiveProduct(product)}
+          className={`p-4 rounded-lg border transition duration-300 ${
+            activeProduct.id === product.id
+              ? "bg-orange-500/20 border-orange-500 text-orange-400"
+              : "bg-gray-900/50 border-gray-700 text-gray-300 hover:border-gray-600"
+          }`}
+        >
+          <div className="text-2xl mb-2">{product.icon}</div>
+          <p className="text-sm font-medium">{product.name}</p>
+        </button>
+      ))}
+    </div>
+
+    {/* Product Detail */}
+    <div className="grid md:grid-cols-2 gap-12 items-center bg-gray-900/30 p-8 rounded-lg border border-gray-800">
+      
+      {/* Left Content */}
+      <div>
+        <h3 className="text-3xl font-bold mb-6">
+          {activeProduct.title}
+        </h3>
+
+        {/* Full Description with Line Break Support */}
+        <p className="text-gray-400 mb-6 leading-relaxed whitespace-pre-line">
+          {activeProduct.description}
+        </p>
+
+        <button className="bg-orange-500 hover:bg-orange-600 text-black font-semibold px-6 py-2 rounded transition duration-300">
+          {activeProduct.button}
+        </button>
+      </div>
+
+      {/* Right Visual */}
+      <div className="bg-gradient-to-br from-orange-500/10 to-orange-600/5 border border-orange-500/20 rounded-lg h-80 flex items-center justify-center">
+        <div className="text-center">
+          <div className="text-6xl mb-4">
+            {activeProduct.imageIcon}
+          </div>
+          <p className="text-gray-400">
+            {activeProduct.name} Interface
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 
           {/* 7 Products Stats */}
           <section className="py-20 px-4 bg-gradient-to-b from-black to-gray-900">
